@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import logo from "./assets/investment-calculator-logo.png";
-import InvestmentForm from "./components/InvestmentForm";
-import InvestmentResult from "./components/InvestmentResults";
+import InvestmentForm from "./components/InvestmentForm/InvestmentForm";
+import InvestmentResult from "./components/InvestmentResults/InvestmentResults";
+import Header from "./components/Header/Header";
 
 function App() {
   const [yearlyData, setYearlyData] = useState([]); // per-year results
@@ -40,10 +40,7 @@ function App() {
   }
   return (
     <div>
-      <header className="header">
-        <img src={logo} alt="logo" />
-        <h1>Investment Calculator</h1>
-      </header>
+      <Header></Header>
 
       <InvestmentForm
         resetResults={resetHandler}
