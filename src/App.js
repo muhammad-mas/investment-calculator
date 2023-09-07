@@ -4,13 +4,21 @@ import InvestmentResult from "./components/InvestmentResults/InvestmentResults";
 import Header from "./components/Header/Header";
 
 function App() {
-  const [yearlyData, setYearlyData] = useState([]); // per-year results
+  const [userInput, setUserInput] = useState(null); // per-year results
 
   const calculateHandler = (userInput) => {
     // Should be triggered when form is submitted
     // You might not directly want to bind it to the submit event on the form though...
-    setYearlyData([]);
-    let yearlyData = [];
+
+    setUserInput(userInput);
+    // do something with yearlyData ...
+  };
+
+  function resetHandler() {
+    setUserInput(null);
+  }
+  let yearlyData = [];
+  if (userInput) {
     let currentSavings = +userInput["currentSavings"]; // feel free to change the shape of this input object!
     const yearlyContribution = +userInput["yearlySavings"]; // as mentioned: feel free to change the shape...
     const expectedReturn = +userInput["expectedInterest"] / 100;
@@ -31,12 +39,6 @@ function App() {
         yearlyContribution: yearlyContribution,
       });
     }
-
-    setYearlyData(yearlyData);
-    // do something with yearlyData ...
-  };
-  function resetHandler() {
-    setYearlyData([]);
   }
   return (
     <div>
@@ -49,7 +51,10 @@ function App() {
 
       {/* Todo: Show below table conditionally (only once result data is available) */}
       {/* Show fallback text if no data is available */}
-      <InvestmentResult yearlyData={yearlyData}></InvestmentResult>
+      <InvestmentResult
+        yearlyData={yearlyData}
+        initialInvestment={userInput && userInput["currentSavings"]}
+      ></InvestmentResult>
     </div>
   );
 }

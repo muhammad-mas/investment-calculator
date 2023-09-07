@@ -31,10 +31,14 @@ function InvestmentResult(props) {
           return (
             <tr key={data.year}>
               <td>{data.year}</td>
-              <td>{formatter.format(data.savingsEndOfYear)}</td>
-              <td>{formatter.format(data.yearlyInterest)}</td>
-              <th>{formatter.format(data.totalInterest)}</th>
-              <td>{formatter.format(data.yearlyContribution)}</td>
+              <td>{formatter.format(+data.savingsEndOfYear)}</td>
+              <td>{formatter.format(+data.yearlyInterest)}</td>
+              <th>{formatter.format(+data.totalInterest)}</th>
+              <td>
+                {formatter.format(
+                  +props.initialInvestment + data.yearlyContribution * data.year
+                )}
+              </td>
             </tr>
           );
         })}
