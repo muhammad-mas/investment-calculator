@@ -53,7 +53,7 @@ function App() {
       {/* Show fallback text if no data is available */}
       <InvestmentResult
         yearlyData={yearlyData}
-        initialInvestment={userInput && userInput["currentSavings"]}
+        initialInvestment={userInput && +userInput["currentSavings"]}
       ></InvestmentResult>
     </div>
   );
