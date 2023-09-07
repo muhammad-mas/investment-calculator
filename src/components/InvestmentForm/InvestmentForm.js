@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import styles from "./InvestmentForm.module.css";
 
 function InvestmentForm(props) {
-  const [investmentForm, setInvestmentForm] = useState({
-    currentSavings: "",
-    yearlySavings: "",
-    expectedInterest: "",
-    investmentDuration: "",
-  });
+  const initialState = {
+    currentSavings: "1000",
+    yearlySavings: "150",
+    expectedInterest: "5",
+    investmentDuration: "10",
+  };
+  const [investmentForm, setInvestmentForm] = useState(initialState);
   const formChangeHandler = (event) => {
     const { value, name } = event.target;
     setInvestmentForm((prev) => ({
@@ -16,12 +17,7 @@ function InvestmentForm(props) {
     }));
   };
   const resetHandler = (event) => {
-    setInvestmentForm({
-      currentSavings: "",
-      yearlySavings: "",
-      expectedInterest: "",
-      investmentDuration: "",
-    });
+    setInvestmentForm(initialState);
     props.resetResults();
   };
   const submitHandler = (event) => {
